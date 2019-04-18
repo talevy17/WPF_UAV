@@ -9,7 +9,7 @@
         Title="FlightSimulator" Height="470" Width="920">
     <Viewbox>
         <Grid>
-            <var:Tab Margin="0,0,200,20"></var:Tab>
+            <var:Tab Margin="460,0,0,20"></var:Tab>
         </Grid>
     </Viewbox>
 </Window>

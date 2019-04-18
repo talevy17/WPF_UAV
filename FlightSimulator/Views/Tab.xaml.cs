@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FlightSimulator.Model;
 
 namespace FlightSimulator.Views
 {
@@ -23,6 +24,7 @@ namespace FlightSimulator.Views
         public Tab()
         {
             InitializeComponent();
+            //Commands.Instance.open("127.0.0.1", 5402);
         }
     }
 }

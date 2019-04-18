@@ -12,8 +12,9 @@ namespace FlightSimulator.Model
 {
     public class Commands : IConnection
     {
-        private TcpClient client;
-        private IPEndPoint ep;
+        private TcpClient client = null;
+        private NetworkStream stream = null;
+        private BinaryWriter writer = null;
         private static Commands self = null;
 
         private Commands() { }
@@ -32,13 +33,18 @@ namespace FlightSimulator.Model
 
         public void open(string ip, int port)
         {
-            ep = new IPEndPoint(IPAddress.Parse(ip), port);
+            IPEndPoint ep = new IPEndPoint(IPAddress.Parse(ip), port);
             client = new TcpClient(ep);
             client.Connect(ep);
+            stream = client.GetStream();
+            writer = new BinaryWriter(stream);
+            Console.WriteLine("connected");
         }
 
         public void close()
         {
+            writer.Close();
+            stream.Close();
             client.Close();
         }
         
@@ -47,15 +53,13 @@ namespace FlightSimulator.Model
             if (client != null)
             {
                 int size = cmds.Length;
-                using (NetworkStream stream = client.GetStream())
-                using (StreamWriter writer = new StreamWriter(stream))
+                for (int i = 0; i < size; ++i)
                 {
-                    for (int i = 0; i < size; ++i)
-                    {
-                        writer.Write(cmds[i]);
-                        Thread.Sleep(2000);
-                    }
+                    writer.Write(cmds[i]);
+                    Console.WriteLine("command: "+cmds[i]+" successfully sent");
+                    Thread.Sleep(2000);
                 }
+                
             }
         }
 
