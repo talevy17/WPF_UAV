@@ -35,8 +35,7 @@ namespace FlightSimulator.ViewModels
             {
                 throttle = value;
                 NotifyPropertyChanged("Throttle");
-                String command = new StringBuilder("set /controls/engines/current-engine/throttle ").Append(throttle.ToString()).ToString();
-                model.manualSend(command);
+                model.manualSend("throttle", throttle);
             }
         }
 
@@ -50,8 +49,7 @@ namespace FlightSimulator.ViewModels
             {
                 rudder = value;
                 NotifyPropertyChanged("Rudder");
-                String command = new StringBuilder("set /controls/flight/rudder ").Append(rudder.ToString()).ToString();
-                model.manualSend(command);
+                model.manualSend("rudder", rudder);
             }
         }
 
@@ -65,8 +63,7 @@ namespace FlightSimulator.ViewModels
             {
                 aileron = value;
                 NotifyPropertyChanged("Aileron");
-                String command = new StringBuilder("set /controls/flight/aileron ").Append(aileron.ToString()).ToString();
-                model.manualSend(command);
+                model.manualSend("aileron", aileron);
             }
         }
         public double Elevator
@@ -79,8 +76,7 @@ namespace FlightSimulator.ViewModels
             {
                 elevator = value;
                 NotifyPropertyChanged("Elevator");
-                String command = new StringBuilder("set /controls/flight/elevator ").Append(elevator.ToString()).ToString();
-                model.manualSend(command);
+                model.manualSend("elevator", elevator);
             }
         }
 
