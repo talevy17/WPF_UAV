@@ -11,13 +11,9 @@ namespace FlightSimulator.ViewModels
     class ManualViewModel : BaseNotify
     {
         private Commands model;
-        private ICommand _throttle;
         private double throttle;
-        private ICommand _rudder;
         private double rudder;
-        private ICommand _aileron;
         private double aileron;
-        private ICommand _elevator;
         private double elevator;
 
         public ManualViewModel(Commands mod)
@@ -40,8 +36,7 @@ namespace FlightSimulator.ViewModels
                 throttle = value;
                 NotifyPropertyChanged("Throttle");
                 String command = new StringBuilder("set /controls/engines/current-engine/throttle ").Append(throttle.ToString()).ToString();
-                String[] commands = { command };
-                model.send(commands);
+                model.manualSend(command);
             }
         }
 
@@ -56,8 +51,7 @@ namespace FlightSimulator.ViewModels
                 rudder = value;
                 NotifyPropertyChanged("Rudder");
                 String command = new StringBuilder("set /controls/flight/rudder ").Append(rudder.ToString()).ToString();
-                String[] commands = { command };
-                model.send(commands);
+                model.manualSend(command);
             }
         }
 
@@ -72,8 +66,7 @@ namespace FlightSimulator.ViewModels
                 aileron = value;
                 NotifyPropertyChanged("Aileron");
                 String command = new StringBuilder("set /controls/flight/aileron ").Append(aileron.ToString()).ToString();
-                String[] commands = { command };
-                model.send(commands);
+                model.manualSend(command);
             }
         }
         public double Elevator
@@ -84,11 +77,10 @@ namespace FlightSimulator.ViewModels
             }
             set
             {
-                aileron = value;
+                elevator = value;
                 NotifyPropertyChanged("Elevator");
                 String command = new StringBuilder("set /controls/flight/elevator ").Append(elevator.ToString()).ToString();
-                String[] commands = { command };
-                model.send(commands);
+                model.manualSend(command);
             }
         }
 

@@ -63,6 +63,14 @@ namespace FlightSimulator.Model
             }
         }
 
+        public void manualSend(String cmd)
+        {
+            if (client != null)
+            {
+                writer.Write(cmd);
+            }
+        }
+
         public void send (String[] cmds)
         {
             Task.Run(() => sendControl(cmds));
