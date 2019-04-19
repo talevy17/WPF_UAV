@@ -24,7 +24,7 @@ namespace FlightSimulator.Views
         public Tab()
         {
             InitializeComponent();
-            Commands.Instance.open("127.0.0.1", 5402);
+            //Commands.Instance.open("127.0.0.1", 5402);
         }
     }
 }
