@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using FlightSimulator.Model;
 using System.ComponentModel;
 
 namespace FlightSimulator.ViewModels
