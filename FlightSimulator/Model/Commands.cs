@@ -130,9 +130,6 @@ namespace FlightSimulator.Model
             paths.Add("throttle", "set /controls/engines/current-engine/throttle");
         }
 
-        public void test()
-        {
-            Console.WriteLine("hi");
-        }
+        
     }
 }

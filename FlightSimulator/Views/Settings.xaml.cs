@@ -21,10 +21,11 @@ namespace FlightSimulator.Views
     /// </summary>
     public partial class Settings : Window
     {
+        private SettingsWindowViewModel settingsWindowViewModel;
         public Settings()
         {
             InitializeComponent();
-            SettingsWindowViewModel settingsWindowViewModel = new SettingsWindowViewModel(new ApplicationSettingsModel(), this);
+           settingsWindowViewModel = new SettingsWindowViewModel(new ApplicationSettingsModel(), this);
             DataContext = settingsWindowViewModel;
         }
     }

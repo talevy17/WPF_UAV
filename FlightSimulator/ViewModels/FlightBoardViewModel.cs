@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using FlightSimulator.Model;
 using System.ComponentModel;
 
 namespace FlightSimulator.ViewModels
@@ -70,5 +69,24 @@ namespace FlightSimulator.ViewModels
             settingWin.Show();
         }
         #endregion
+
+        private ICommand connectCommand;
+        public ICommand ConnectCommand
+        {
+            get
+            {
+                return connectCommand ?? (connectCommand = new CommandHandler(()=>OnClickConnect()));
+            }
+            
+        }
+        private void OnClickConnect()
+        {
+            Server server = Server.Instance;
+            server.Open(ApplicationSettingsModel.Instance.FlightServerIP,
+                ApplicationSettingsModel.Instance.FlightInfoPort);
+            Commands commands = Commands.Instance;
+            commands.Open(ApplicationSettingsModel.Instance.FlightServerIP,
+                ApplicationSettingsModel.Instance.FlightCommandPort);
+        }
     }
 }
