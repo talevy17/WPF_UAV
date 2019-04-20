@@ -62,7 +62,7 @@ namespace FlightSimulator.Model
          * */
         private void DataRecieved(object sender, PropertyChangedEventArgs e)
         {
-            lock(server.Mutex)
+            lock (server.Mutex)
             {
                 String[] tokens = server.Data.Split(',');
                 data.SetDataValues(tokens);

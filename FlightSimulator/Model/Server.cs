@@ -31,7 +31,7 @@ namespace FlightSimulator.Model
         }
 
         /**
-         * The Instance property getter.
+         * The Instance property getter, Singleton.
          * */
         public static Server Instance
         {
@@ -44,6 +44,7 @@ namespace FlightSimulator.Model
                 return self;
             }
         }
+
 
         /**
          * The Data property.
@@ -108,7 +109,7 @@ namespace FlightSimulator.Model
             {
                 listener.Stop();
             }
-            
+
         }
 
         /*
@@ -117,6 +118,7 @@ namespace FlightSimulator.Model
         public void Close()
         {
             stop = true;
+
         }
     }
 }
