@@ -6,13 +6,22 @@ using System.Threading.Tasks;
 
 namespace FlightSimulator.Model
 {
+    /**
+     * Singleton -> the FlightData class is an Indexer that contains all of the current values from the simulator.
+     * */
     public class FlightData
     {
         private Dictionary<string, double> data = new Dictionary<string, double>();
         private static FlightData self = null;
 
-        private FlightData() { initializeDataMap(); }
+        /**
+         * private CTOR.
+         * */
+        private FlightData() { InitializeDataMap(); }
 
+        /**
+         * The Instance property getter.
+         * */
         public static FlightData Instance
         {
             get
@@ -25,6 +34,9 @@ namespace FlightSimulator.Model
             }
         }
 
+        /**
+         * The indexer, returns the value if the key exists, Nan if it doesn't.
+         * */
         public double this [string key]
         {
             get
@@ -39,7 +51,10 @@ namespace FlightSimulator.Model
             }
         }
 
-        public void setDataValues(String[] tokens)
+        /**
+         * Parse the given stream of tokens to double and update the dictionary's values.
+         * */
+        public void SetDataValues(String[] tokens)
         {
             try
             {
@@ -75,7 +90,10 @@ namespace FlightSimulator.Model
             }
         }
 
-        private void initializeDataMap()
+        /**
+         * Initiliazes the dictionary's values, called upon creation.
+         * */
+        private void InitializeDataMap()
         {
             data.Add("/position/longitude-deg", 0);
             data.Add("/position/latitude-deg", 0);

@@ -16,6 +16,9 @@ namespace FlightSimulator.ViewModels
         private double aileron;
         private double elevator;
 
+        /*
+         * CTOR, takes one argument -> the commands channel.
+         * */
         public ManualViewModel(Commands mod)
         {
             model = mod;
@@ -25,6 +28,9 @@ namespace FlightSimulator.ViewModels
             elevator = 0;
         }
 
+        /**
+         * The Throttle property
+         * */
         public double Throttle
         {
             get
@@ -35,10 +41,14 @@ namespace FlightSimulator.ViewModels
             {
                 throttle = value;
                 NotifyPropertyChanged("Throttle");
-                model.manualSend("throttle", throttle);
+                // send the new throttle value via the commands channel.
+                model.ManualSend("throttle", throttle);
             }
         }
 
+        /**
+         * The Rudder property.
+         **/
         public double Rudder
         {
             get
@@ -49,10 +59,14 @@ namespace FlightSimulator.ViewModels
             {
                 rudder = value;
                 NotifyPropertyChanged("Rudder");
-                model.manualSend("rudder", rudder);
+                // send the new rudder value via the commands channel.
+                model.ManualSend("rudder", rudder);
             }
         }
 
+        /**
+         * The Aileron property.
+         * */
         public double Aileron
         {
             get
@@ -63,9 +77,14 @@ namespace FlightSimulator.ViewModels
             {
                 aileron = value;
                 NotifyPropertyChanged("Aileron");
-                model.manualSend("aileron", aileron);
+                // send the new aileron value via the commands channel.
+                model.ManualSend("aileron", aileron);
             }
         }
+
+        /**
+         * The Elevator property.
+         * */
         public double Elevator
         {
             get
@@ -76,7 +95,8 @@ namespace FlightSimulator.ViewModels
             {
                 elevator = value;
                 NotifyPropertyChanged("Elevator");
-                model.manualSend("elevator", elevator);
+                // send the new elevator value via the commands channel.
+                model.ManualSend("elevator", elevator);
             }
         }
 

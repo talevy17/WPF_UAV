@@ -9,19 +9,28 @@ using FlightSimulator.ViewModels;
 
 namespace FlightSimulator.Model
 {
+    /**
+     * The Info channel, binded to the data recieved from the server, parses the data and notifes the changes.
+     * 
+     * */
     class Info : BaseNotify
     {
         private FlightData data = null;
         private Server server;
 
-
+        /**
+         * CTOR, gets the instances and the Flight Data, adds itself as a listener of the server.
+         * */
         public Info()
         {
             data = FlightData.Instance;
             server = Server.Instance;
-            server.PropertyChanged += dataRecieved;
+            server.PropertyChanged += DataRecieved;
         }
 
+        /**
+         * The Longitude property.
+         * */
         public double Lon
         {
             get
@@ -33,6 +42,9 @@ namespace FlightSimulator.Model
             }
         }
 
+        /**
+         * The Latitude property.
+         * */
         public double Lat
         {
             get
@@ -44,19 +56,18 @@ namespace FlightSimulator.Model
             }
         }
 
-        private void dataRecieved(object sender, PropertyChangedEventArgs e)
+        /**
+         * DataRecieved invoked upon a change in Server, sets the data in the indexer and notifes the viewmodel 
+         * about the change.
+         * */
+        private void DataRecieved(object sender, PropertyChangedEventArgs e)
         {
             lock(server.Mutex)
             {
-                String[] tokens = parse(server.Data);
-                data.setDataValues(tokens);
-                NotifyPropertyChanged("Data");
+                String[] tokens = server.Data.Split(',');
+                data.SetDataValues(tokens);
             }
-        }
-
-        private String[] parse(string line)
-        {
-            return line.Split(',');
+            NotifyPropertyChanged("Data");
         }
     }
 }

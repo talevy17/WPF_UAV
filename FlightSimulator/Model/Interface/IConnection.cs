@@ -8,7 +8,9 @@ namespace FlightSimulator.Model.Interface
 {
     interface IConnection
     {
-        void open(string ip, int port);
-        void close();
+        // Open a connection with the given ip and port/
+        void Open(string ip, int port);
+        // Close the connection.
+        void Close();
     }
 }
