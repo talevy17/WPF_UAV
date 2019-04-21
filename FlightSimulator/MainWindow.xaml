@@ -12,6 +12,7 @@
 
             <var:Tab Margin="460,0,0,20"></var:Tab>
             <var:FlightBoard Margin="0,0,470,0"></var:FlightBoard>
+            
 
         </Grid>
     </Viewbox>

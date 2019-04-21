@@ -82,24 +82,5 @@ namespace FlightSimulator.ViewModels
             Commands.Instance.Open(ApplicationSettingsModel.Instance.FlightServerIP, ApplicationSettingsModel.Instance.FlightCommandPort);
         }
         #endregion
-
-        private ICommand connectCommand;
-        public ICommand ConnectCommand
-        {
-            get
-            {
-                return connectCommand ?? (connectCommand = new CommandHandler(()=>OnClickConnect()));
-            }
-            
-        }
-        private void OnClickConnect()
-        {
-            Server server = Server.Instance;
-            server.Open(ApplicationSettingsModel.Instance.FlightServerIP,
-                ApplicationSettingsModel.Instance.FlightInfoPort);
-            Commands commands = Commands.Instance;
-            commands.Open(ApplicationSettingsModel.Instance.FlightServerIP,
-                ApplicationSettingsModel.Instance.FlightCommandPort);
-        }
     }
 }

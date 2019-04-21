@@ -1,4 +1,5 @@
 ﻿using FlightSimulator.Views;
+using FlightSimulator.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,17 @@ namespace FlightSimulator
     {
         public MainWindow()
         {
+            Closed += MainWindowClosed;
             InitializeComponent();
+        }
+        /**
+         * safe exit
+         **/
+        private void MainWindowClosed(object sender, EventArgs e)
+        {
+            if (Server.Instance.IsOpen()) {Server.Instance.Close();}
+            if (Commands.Instance.IsExists()) {Commands.Instance.Close();}
+            
         }
     }
 }
