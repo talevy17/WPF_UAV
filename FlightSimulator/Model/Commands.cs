@@ -55,6 +55,7 @@ namespace FlightSimulator.Model
             client = new TcpClient(ep);
             client.Connect(ep);
             stream = client.GetStream();
+            stream.Flush();
             Console.WriteLine("connected");
         }
 
@@ -76,17 +77,10 @@ namespace FlightSimulator.Model
             {
                 foreach (String command in cmds)
                 {
-                    lock(locker)
-                    {
-                        string cmd = command + "\r\n";
-                        // convert the command string to an array of bytes.
-                        byte[] byteArr = System.Text.Encoding.ASCII.GetBytes(cmd.ToString());
-                        stream.Write(byteArr, 0, byteArr.Length);
-                        Console.WriteLine("command: " + cmd);
-                    }
+                    string cmd = command + "\r\n";
+                    Sender(cmd);
                     Thread.Sleep(2000);
                 }
-                
             }
         }
 
@@ -99,13 +93,23 @@ namespace FlightSimulator.Model
             {
                 // get the path of the property that was changed.
                 string path = paths[cmd] + value.ToString("N5") + "\r\n";
-                // mutex lock.
-                lock(locker)
-                {
-                    byte[] byteArr = System.Text.Encoding.ASCII.GetBytes(path.ToString());
-                    stream.Write(byteArr, 0, byteArr.Length);
-                    Console.WriteLine("command: " + path);
-                }
+                Sender(path);
+            }
+        }
+
+        /**
+         * Sends the string to the server.
+         * */
+        private void Sender(string toSend)
+        {
+            // mutex lock.
+            lock (locker)
+            {
+                // convert the command string to an array of bytes.
+                byte[] buffer = System.Text.Encoding.ASCII.GetBytes(toSend.ToString());
+                stream.Write(buffer, 0, buffer.Length);
+                Console.WriteLine("command: " + toSend);
+                stream.Flush();
             }
         }
 
