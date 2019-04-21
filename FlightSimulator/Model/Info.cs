@@ -64,7 +64,6 @@ namespace FlightSimulator.Model
         {
             lock (server.Mutex)
             {
-                Console.WriteLine(server.Data);
                 String[] tokens = server.Data.Split(',');
                 data.SetDataValues(tokens);
             }
