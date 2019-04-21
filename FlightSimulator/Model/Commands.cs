@@ -76,13 +76,12 @@ namespace FlightSimulator.Model
             {
                 foreach (String command in cmds)
                 {
-                    string cmd = command + "\r\n";
                     lock(locker)
                     {
                         // convert the command string to an array of bytes.
-                        byte[] byteArr = System.Text.Encoding.ASCII.GetBytes(cmd.ToString());
+                        byte[] byteArr = System.Text.Encoding.ASCII.GetBytes(command.ToString());
                         stream.Write(byteArr, 0, byteArr.Length);
-                        Console.WriteLine("command: " + cmd + " successfully sent");
+                        Console.WriteLine("command: " + command + " successfully sent");
                     }
                     Thread.Sleep(2000);
                 }

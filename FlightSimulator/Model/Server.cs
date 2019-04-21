@@ -119,7 +119,6 @@ namespace FlightSimulator.Model
         public void Close()
         {
             stop = true;
-
         }
     }
 }

@@ -11,7 +11,6 @@ namespace FlightSimulator.Model
 {
     /**
      * The Info channel, binded to the data recieved from the server, parses the data and notifes the changes.
-     * 
      * */
     class Info : BaseNotify
     {
