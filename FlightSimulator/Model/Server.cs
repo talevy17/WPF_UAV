@@ -84,6 +84,7 @@ namespace FlightSimulator.Model
                 IPEndPoint ep = new IPEndPoint(IPAddress.Parse(ip), port);
                 listener = new TcpListener(ep);
                 listener.Start();
+                Console.WriteLine("Waiting for incoming connections...");
                 TcpClient client = listener.AcceptTcpClient();
                 Console.WriteLine("Accepted Client !");
                 NetworkStream stream = client.GetStream();
