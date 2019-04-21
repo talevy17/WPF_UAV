@@ -67,6 +67,10 @@ namespace FlightSimulator.ViewModels
         {
             string[] delimiter = { "\r\n" };
             String[] result = text.Split(delimiter, StringSplitOptions.None);
+            foreach (string res in result)
+            {
+                Console.WriteLine(res);
+            }
             text = "";
             NotifyPropertyChanged("Color");
             model.Send(result);

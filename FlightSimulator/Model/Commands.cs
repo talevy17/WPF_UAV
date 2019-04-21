@@ -78,10 +78,11 @@ namespace FlightSimulator.Model
                 {
                     lock(locker)
                     {
+                        string cmd = command + "\r\n";
                         // convert the command string to an array of bytes.
-                        byte[] byteArr = System.Text.Encoding.ASCII.GetBytes(command.ToString());
+                        byte[] byteArr = System.Text.Encoding.ASCII.GetBytes(cmd.ToString());
                         stream.Write(byteArr, 0, byteArr.Length);
-                        Console.WriteLine("command: " + command + " successfully sent");
+                        Console.WriteLine("command: " + cmd);
                     }
                     Thread.Sleep(2000);
                 }
@@ -97,16 +98,13 @@ namespace FlightSimulator.Model
             if (client != null)
             {
                 // get the path of the property that was changed.
-                string path = paths[cmd];
-                // add the new value to the command.
-                path += " ";
-                path += value.ToString("N5");
+                string path = paths[cmd] + value.ToString("N5") + "\r\n";
                 // mutex lock.
                 lock(locker)
                 {
                     byte[] byteArr = System.Text.Encoding.ASCII.GetBytes(path.ToString());
                     stream.Write(byteArr, 0, byteArr.Length);
-                    Console.WriteLine("command: " + path + " successfully sent");
+                    Console.WriteLine("command: " + path);
                 }
             }
         }
@@ -123,10 +121,10 @@ namespace FlightSimulator.Model
          * Initializes the paths that are binded with the manuel commands.
          * */
         private void SetPathMap() {
-            paths.Add("aileron", "set /controls/flight/aileron");
-            paths.Add("elevator", "set /controls/flight/elevator");
-            paths.Add("rudder", "set /controls/flight/rudder");
-            paths.Add("throttle", "set /controls/engines/current-engine/throttle");
+            paths.Add("aileron", "set /controls/flight/aileron ");
+            paths.Add("elevator", "set /controls/flight/elevator ");
+            paths.Add("rudder", "set /controls/flight/rudder ");
+            paths.Add("throttle", "set /controls/engines/current-engine/throttle ");
         }
         public bool IsExists()
         {
