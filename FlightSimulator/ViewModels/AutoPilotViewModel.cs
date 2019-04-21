@@ -83,7 +83,7 @@ namespace FlightSimulator.ViewModels
         /**
          * binded with the OK button, activates the Parser on click.
          * */
-        public ICommand okCommand
+        public ICommand OkCommand
         {
             get
             {
@@ -94,7 +94,7 @@ namespace FlightSimulator.ViewModels
         /**
          * binded with the CLEAR button, activates the ClearTextBox on click.
          * */
-        public ICommand clearCommand
+        public ICommand ClearCommand
         {
             get
             {
