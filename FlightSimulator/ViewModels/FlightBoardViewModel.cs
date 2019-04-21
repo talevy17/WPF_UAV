@@ -56,6 +56,7 @@ namespace FlightSimulator.ViewModels
         #region 
 
         private ICommand settingsCommand;
+        private ICommand connect;
         public ICommand SettingsCommand
         {
             get
@@ -67,6 +68,18 @@ namespace FlightSimulator.ViewModels
         {
             var settingWin = new Settings();
             settingWin.Show();
+        }
+        public ICommand ConnectCommand
+        {
+            get
+            {
+                return connect ?? (connect = new CommandHandler(() => ConnentOnClick()));
+            }
+        }
+        private void ConnentOnClick()
+        {
+            Server.Instance.Open(ApplicationSettingsModel.Instance.FlightServerIP, ApplicationSettingsModel.Instance.FlightInfoPort);
+            Commands.Instance.Open(ApplicationSettingsModel.Instance.FlightServerIP, ApplicationSettingsModel.Instance.FlightCommandPort);
         }
         #endregion
     }

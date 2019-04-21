@@ -37,7 +37,7 @@
                     Command="{Binding SettingsCommand}" RenderTransformOrigin="-0.268, 0.482" ClickMode="Press"/>
             <Button x:Name="btnConnect" HorizontalAlignment="Right" Padding="5" Content="Connect"
                     Grid.Column="0" Grid.Row="1" Margin="5" Height="27" FontSize="10" Width="60"
-                    Command="{Binding open}" RenderTransformOrigin="-0.268, 0.482" ClickMode="Press"/>
+                    Command="{Binding ConnectCommand}" RenderTransformOrigin="-0.268, 0.482" ClickMode="Press"/>
                     
         </Grid>
         <TextBlock Style="{StaticResource LabelStyle}" LayoutTransform="{StaticResource rotate}" VerticalAlignment="Center" Grid.Row="1">Lon</TextBlock>
