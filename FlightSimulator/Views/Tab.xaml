@@ -8,6 +8,16 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel>
         <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
             <TabControl Height="470" Width="470">
                 <TabItem Header="Manual">
                     <local:Manual></local:Manual>
