@@ -69,8 +69,7 @@ namespace FlightSimulator.ViewModels
             List<string> result = text.Split(delimiter, StringSplitOptions.None).ToList();
             text = "";
             NotifyPropertyChanged("Color");
-            // create a new nameless task to run the Send command on a new thread.
-            Task.Run(() => model.Send(result));
+            model.Send(result);
         }
 
         /**

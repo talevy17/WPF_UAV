@@ -104,7 +104,8 @@ namespace FlightSimulator.Model
          * */
         public void Send (List<string> cmds)
         {
-            if (client != null)
+            if (null == client) { return; }
+            Thread thread = new Thread(() =>
             {
                 foreach (string command in cmds)
                 {
@@ -112,7 +113,8 @@ namespace FlightSimulator.Model
                     Sender(cmd);
                     Thread.Sleep(2000);
                 }
-            }
+            });
+            thread.Start();
         }
 
         /**
