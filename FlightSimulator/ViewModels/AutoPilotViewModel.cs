@@ -66,14 +66,11 @@ namespace FlightSimulator.ViewModels
         private void Parser()
         {
             string[] delimiter = { "\r\n" };
-            String[] result = text.Split(delimiter, StringSplitOptions.None);
-            foreach (string res in result)
-            {
-                Console.WriteLine(res);
-            }
+            List<string> result = text.Split(delimiter, StringSplitOptions.None).ToList();
             text = "";
             NotifyPropertyChanged("Color");
-            model.Send(result);
+            // create a new nameless task to run the Send command on a new thread.
+            Task.Run(() => model.Send(result));
         }
 
         /**

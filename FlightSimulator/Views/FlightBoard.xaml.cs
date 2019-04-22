@@ -57,6 +57,7 @@ namespace FlightSimulator.Views
                     FlightBoardViewModel vm = sender as FlightBoardViewModel;
                     Point p1 = new Point(vm.Lon, vm.Lat);            // Fill here!
                     planeLocations.AppendAsync(Dispatcher, p1);
+                    init = false;
                 }
             }
         }

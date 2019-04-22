@@ -19,7 +19,7 @@ namespace FlightSimulator.Model
     {
         private TcpClient client = null;
         private NetworkStream stream = null;
-        private readonly object locker;
+        private readonly static object locker = new object();
         private Dictionary<string, string> paths = new Dictionary<string, string>();
         private static Commands self = null;
 
@@ -28,7 +28,6 @@ namespace FlightSimulator.Model
          * */
         private Commands() {
             SetPathMap();
-            locker = new Object();
         }
 
         /**
@@ -38,11 +37,14 @@ namespace FlightSimulator.Model
         {
             get
             {
-                if (null == self)
+                lock (locker)
                 {
-                    self = new Commands();
+                    if (null == self)
+                    {
+                        self = new Commands();
+                    }
+                    return self;
                 }
-                return self;
             }
         }
 
@@ -66,22 +68,6 @@ namespace FlightSimulator.Model
         {
             stream.Close();
             client.Close();
-        }
-        
-        /**
-         * sends all of the commands to the server, waiting 2 seconds between commands.
-         * */
-        private void SendControl(String[] cmds)
-        {
-            if (client != null)
-            {
-                foreach (String command in cmds)
-                {
-                    string cmd = command + "\r\n";
-                    Sender(cmd);
-                    Thread.Sleep(2000);
-                }
-            }
         }
 
         /**
@@ -114,11 +100,19 @@ namespace FlightSimulator.Model
         }
 
         /**
-         * creates a new nameless task to run as the SendControl.
+         * Sends all commands to the server, waiting two seconds between commands.
          * */
-        public void Send (String[] cmds)
+        public void Send (List<string> cmds)
         {
-            Task.Run(() => SendControl(cmds));
+            if (client != null)
+            {
+                foreach (string command in cmds)
+                {
+                    string cmd = command + "\r\n";
+                    Sender(cmd);
+                    Thread.Sleep(2000);
+                }
+            }
         }
 
         /**
