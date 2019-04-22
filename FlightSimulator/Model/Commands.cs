@@ -58,7 +58,7 @@ namespace FlightSimulator.Model
             client.Connect(ep);
             stream = client.GetStream();
             stream.Flush();
-            Console.WriteLine("connected");
+            Console.WriteLine("connected, " + ip + " " + port.ToString());
         }
 
         /**
