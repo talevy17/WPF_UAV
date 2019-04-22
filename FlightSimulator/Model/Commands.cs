@@ -53,9 +53,7 @@ namespace FlightSimulator.Model
          * */
         public void Open(string ip, int port)
         {
-            IPEndPoint ep = new IPEndPoint(IPAddress.Parse(ip), port);
-            client = new TcpClient(ep);
-            client.Connect(ep);
+            client = new TcpClient(ip, port);
             stream = client.GetStream();
             stream.Flush();
             Console.WriteLine("connected, " + ip + " " + port.ToString());
