@@ -55,7 +55,7 @@ namespace FlightSimulator.Views
                 if (e.PropertyName.Equals("Lat") || e.PropertyName.Equals("Lon"))
                 {
                     FlightBoardViewModel vm = sender as FlightBoardViewModel;
-                    Point p1 = new Point(vm.Lon, vm.Lat);            // Fill here!
+                    Point p1 = new Point(vm.Lat, vm.Lon);            // Fill here!
                     planeLocations.AppendAsync(Dispatcher, p1);
                     init = false;
                 }
