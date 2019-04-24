@@ -31,9 +31,8 @@ namespace FlightSimulator
          **/
         private void MainWindowClosed(object sender, EventArgs e)
         {
-            if (Server.Instance.IsOpen()) {Server.Instance.Close();}
-            if (Commands.Instance.IsExists()) {Commands.Instance.Close();}
-            
+            if (Server.Instance.IsConnected()) {Server.Instance.Close();}
+            if (Commands.Instance.IsConnected()) {Commands.Instance.Close();}
         }
     }
 }

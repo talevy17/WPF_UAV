@@ -121,7 +121,10 @@ namespace FlightSimulator.Model
             stop = true;
         }
 
-        public bool IsOpen()
+        /**
+         * Is the connection open
+         * */
+        public bool IsConnected()
         {
             return this.listener != null;
         }

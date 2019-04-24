@@ -124,7 +124,11 @@ namespace FlightSimulator.Model
             paths.Add("rudder", "set /controls/flight/rudder ");
             paths.Add("throttle", "set /controls/engines/current-engine/throttle ");
         }
-        public bool IsExists()
+
+        /**
+         * Is the connection open
+         * */
+        public bool IsConnected()
         {
             return this.client != null;
         }

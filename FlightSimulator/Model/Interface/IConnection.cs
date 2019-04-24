@@ -12,5 +12,7 @@ namespace FlightSimulator.Model.Interface
         void Open(string ip, int port);
         // Close the connection.
         void Close();
+        // Was the connection opened
+        bool IsConnected();
     }
 }
